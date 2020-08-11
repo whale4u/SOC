@@ -1,12 +1,15 @@
 <template>
 <div>
-<el-input placeholder="请输入内容" v-model="input" clearable></el-input>
-<br />
-<el-input placeholder="请输入密码" v-model="input" show-password></el-input>
-<el-row>
-  <el-button plain>清除</el-button>
-  <el-button plain>登录</el-button>
-</el-row>
+    <div>
+        <el-input placeholder="请输入用户名" v-model="username" clearable></el-input>
+    </div>
+    <div>
+        <el-input placeholder="请输入密码" v-model="password" show-password></el-input>
+    </div>
+    <el-row>
+    <el-button>清除</el-button>
+    <el-button @click="login">登录</el-button>
+    </el-row>
 </div>
 </template>
 
@@ -21,17 +24,34 @@
 </style>
 
 <script>
+import axios from 'axios'
   export default {
+    name: 'VueLogin',
     data() {
-      const item = {
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      };
       return {
-        input: '',
-        tableData: Array(20).fill(item)
+        username: '',
+        password: '',
       }
-    }
+    },
+    methods: {
+        login: function () {
+            var self = this;
+
+            axios.post('/api/login', {
+                username: this.username,
+                password: this.password
+            })
+            .then (function (response) {
+                var token = response.data
+                if (token) {
+                    sessionStorage.setItem('token', token)
+                    self.$router.push({path:'/'})
+                }
+            })
+            .catch (function (error) {
+                console.log(error)
+            })
+        }
+    },
   };
 </script>
