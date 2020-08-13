@@ -9,25 +9,42 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
-    {
-      path: '/',
-      name: 'Home',
-      component: Home
-    },
-    {
-      path: '/login',
-      name: 'Login',
-      component: Login
-    },
-    {
-      path: '/vuelogin',
-      name: 'VueLogin',
-      component: VueLogin
-    },
+    // {
+    //   path: '/',
+    //   name: 'Home',
+    //   component: Home
+    // },
+    // {
+    //   path: '/login',
+    //   name: 'Login',
+    //   component: Login
+    // },
+    // {
+    //   path: '/vuelogin',
+    //   name: 'VueLogin',
+    //   component: VueLogin
+    // },
     {
       path: '/vuehome',
       name: 'VueHome',
-      component: VueHome
+      component: VueHome,
+      children: [
+        {
+          path: 'home', //默认子路由
+          name: 'home',
+          component: Home
+        },
+        {
+          path: 'login',
+          name: 'Login',
+          component: Login
+        },
+        {
+          path: 'vuelogin',
+          name: 'VueLogin',
+          component: VueLogin
+        },
+      ]
     }
   ]
 })

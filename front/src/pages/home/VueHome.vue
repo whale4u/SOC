@@ -2,18 +2,20 @@
 <div>
 <el-container>
   <el-header>
-    <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-        <el-menu-item index="1">首页</el-menu-item>
-        <el-menu-item index="2">工作台</el-menu-item>
-        <el-menu-item index="3">系统管理</el-menu-item>
+    <el-menu :default-active="activeIndex" router="meunRoute" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+        <el-menu-item index="/vuehome">首页</el-menu-item>
+        <el-menu-item index="/vuehome/home">工作台</el-menu-item>
+        <el-menu-item index="/vuehome/vuelogin">系统管理</el-menu-item>
         <el-submenu index="4">
         <template slot="title">罗小四</template>
-            <el-menu-item index="2-1">个人中心</el-menu-item>
-            <el-menu-item index="2-2">退出登录</el-menu-item>
+            <el-menu-item index="/vuehome/home">个人中心</el-menu-item>
+            <el-menu-item index="/vuehome/vuelogin">退出登录</el-menu-item>
         </el-submenu>
     </el-menu>
   </el-header>
-  <el-main>Main</el-main>
+  <el-main>
+    <router-view></router-view> 
+  </el-main>
   <el-footer>Footer</el-footer>
 </el-container>
 </div>
@@ -25,10 +27,16 @@ export default {
     name: "VueHome",
     data() {
         return {
-            data: 0
+            data: 1,
+            activeIndex: '1',
+            meunRoute: true
         }
     },
     methods: {
+        handleSelect (key, path) {
+            this.activeIndex = key
+            this.data = key
+        },
         submitForm () {
             axios.get('/api/hello',{
                 headers: {
@@ -44,7 +52,7 @@ export default {
 </script>
 <style>
 .el-header, .el-footer {
-    background-color: #B3C0D1;
+    background-color: transparent;
     color: #333;
     text-align: center;
     line-height: 60px;
@@ -53,6 +61,14 @@ export default {
     background-color: #E9EEF3;
     color: #333;
     text-align: center;
-    line-height: 160px;
+    min-height: 600px;
+    } 
+  .home-page {
+      width: 100%;
+      height: 200px;
+      background: url('../../assets/logo.png')
   }
+  .el-menu--horizontal>.el-submenu {
+    float: right;
+}
 </style>
