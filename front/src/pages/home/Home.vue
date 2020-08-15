@@ -26,6 +26,15 @@ export default {
             })
         }
     },
+    mounted() {
+        axios.get('/user/userinfo')
+        .then(res => {
+            console.log(res)
+        })
+        .catch(err => {
+            console.error(err);
+        })
+    },
 }
 </script>
 
