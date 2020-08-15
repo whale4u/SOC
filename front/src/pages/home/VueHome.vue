@@ -2,10 +2,10 @@
 <div>
 <el-container>
   <el-header>
-    <el-menu :default-active="activeIndex" router="meunRoute" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+    <el-menu :default-active="activeIndex" router class="el-menu-demo" mode="horizontal" @select="handleSelect">
         <el-menu-item index="/vuehome">首页</el-menu-item>
         <el-menu-item index="/vuehome/home">工作台</el-menu-item>
-        <el-menu-item index="/vuehome/vuelogin">系统管理</el-menu-item>
+        <el-menu-item index="/vuehome/manage">系统管理</el-menu-item>
         <el-submenu index="4">
         <template slot="title">罗小四</template>
             <el-menu-item index="/vuehome/home">个人中心</el-menu-item>

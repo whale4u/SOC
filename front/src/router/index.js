@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/pages/home/Home'
 import Login from '@/pages/home/Login'
 import VueLogin from '@/pages/home/VueLogin'
+import SysManage from '@/pages/home/SysManage'
 import VueHome from '@/pages/home/VueHome'
 
 Vue.use(Router)
@@ -43,6 +44,16 @@ export default new Router({
           path: 'vuelogin',
           name: 'VueLogin',
           component: VueLogin
+        },
+        {
+          path: 'vuelogin',
+          name: 'VueLogin',
+          component: VueLogin
+        },
+        {
+          path: 'manage',
+          name: 'SysManage',
+          component: SysManage
         },
       ]
     }
